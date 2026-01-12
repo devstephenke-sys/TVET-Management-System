@@ -68,7 +68,7 @@ export const DATA_GROUPS: FormGroup[] = [
     fields: [
       { id: 'has_strategic_plan', label: 'Do you have a strategic plan?', type: 'boolean' },
       { id: 'strategic_plan_period', label: 'Time Period Covered', type: 'text' },
-      { id: 'strategic_plan_effectiveness', label: 'Effectiveness Rating (1-5)', type: 'number' },
+      { id: 'strategic_plan_effectiveness', label: 'Effectiveness Rating (1-5)', type: 'rating' },
       { id: 'success_governance', label: 'Success: Governance & Management', type: 'select', options: ['Low', 'Medium', 'High'] },
       { id: 'success_quality', label: 'Success: Quality & Relevance', type: 'select', options: ['Low', 'Medium', 'High'] },
       { id: 'success_access', label: 'Success: Access & Equity', type: 'select', options: ['Low', 'Medium', 'High'] },
@@ -127,7 +127,7 @@ export const DATA_GROUPS: FormGroup[] = [
       { id: 'internet_access_trainees', label: 'Internet Access for Trainees?', type: 'boolean' },
       { id: 'internet_connection_method', label: 'Connection Method', type: 'select', options: ['Fibre', 'Mobile', 'Satellite', 'None'] },
       { id: 'dbta_lms_access', label: 'Access to DBTA LMS?', type: 'boolean' },
-      { id: 'satisfied_with_lms', label: 'Satisfaction with LMS', type: 'number' }
+      { id: 'satisfied_with_lms', label: 'Satisfaction with LMS', type: 'rating' }
     ]
   },
   {
