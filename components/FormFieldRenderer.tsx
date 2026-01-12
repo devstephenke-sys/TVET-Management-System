@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useRef } from 'react';
 import { FormField } from '../types';
 
 interface FormFieldRendererProps {
@@ -8,10 +8,67 @@ interface FormFieldRendererProps {
   onChange: (id: string, value: any) => void;
 }
 
+const RichTextEditor: React.FC<{ value: string; onChange: (v: string) => void; placeholder?: string }> = ({ value, onChange, placeholder }) => {
+  const editorRef = useRef<HTMLDivElement>(null);
+
+  const handleCommand = (command: string) => {
+    document.execCommand(command, false);
+    editorRef.current?.focus();
+  };
+
+  const handleInput = () => {
+    if (editorRef.current) {
+      onChange(editorRef.current.innerHTML);
+    }
+  };
+
+  return (
+    <div className="mt-1 border border-gray-300 rounded-md overflow-hidden bg-white shadow-sm">
+      <div className="flex border-b border-gray-200 bg-gray-50 p-1.5 space-x-2">
+        <button
+          type="button"
+          onClick={() => handleCommand('bold')}
+          className="p-1 px-3 hover:bg-gray-200 rounded text-gray-700 font-bold border border-gray-300 bg-white transition-colors"
+          title="Bold"
+        >
+          B
+        </button>
+        <button
+          type="button"
+          onClick={() => handleCommand('insertUnorderedList')}
+          className="p-1 px-2 hover:bg-gray-200 rounded text-gray-700 border border-gray-300 bg-white transition-colors flex items-center"
+          title="Bullet Points"
+        >
+          <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+            <path fillRule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clipRule="evenodd" />
+          </svg>
+        </button>
+      </div>
+      <div
+        ref={editorRef}
+        contentEditable
+        onInput={handleInput}
+        onBlur={handleInput}
+        dangerouslySetInnerHTML={{ __html: value || '' }}
+        className="p-3 min-h-[140px] focus:outline-none text-sm prose prose-sm max-w-none prose-slate"
+        data-placeholder={placeholder}
+      />
+    </div>
+  );
+};
+
 export const FormFieldRenderer: React.FC<FormFieldRendererProps> = ({ field, value, onChange }) => {
   const commonClasses = "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2 border bg-white";
 
   switch (field.type) {
+    case 'rich-text':
+      return (
+        <RichTextEditor 
+          value={value} 
+          onChange={(v) => onChange(field.id, v)} 
+          placeholder={field.placeholder} 
+        />
+      );
     case 'textarea':
       return (
         <textarea

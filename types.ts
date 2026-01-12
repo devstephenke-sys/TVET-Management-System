@@ -2,7 +2,7 @@
 export interface FormField {
   id: string;
   label: string;
-  type: 'text' | 'number' | 'email' | 'tel' | 'url' | 'select' | 'textarea' | 'boolean' | 'percentage' | 'rating';
+  type: 'text' | 'number' | 'email' | 'tel' | 'url' | 'select' | 'textarea' | 'boolean' | 'percentage' | 'rating' | 'rich-text';
   options?: string[];
   placeholder?: string;
 }

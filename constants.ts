@@ -106,7 +106,7 @@ export const DATA_GROUPS: FormGroup[] = [
       { id: 'is_trade_accredited', label: 'Is Trade Accredited?', type: 'boolean' },
       { id: 'curriculum_satisfactory', label: 'Is Curriculum Satisfactory?', type: 'boolean' },
       { id: 'curriculum_last_reviewed', label: 'Last Reviewed Date', type: 'text' },
-      { id: 'curriculum_gaps', label: 'Perceived Gaps in Curriculum', type: 'textarea' },
+      { id: 'curriculum_gaps', label: 'Perceived Gaps in Curriculum', type: 'rich-text' },
       { id: 'specialized_equipment_required', label: 'Specialized Equipment Required', type: 'textarea' },
       { id: 'offers_rpl', label: 'Offers Recognition of Prior Learning (RPL)?', type: 'boolean' },
       { id: 'offers_dual_training', label: 'Offers Dual Training?', type: 'boolean' }
